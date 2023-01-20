@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gallery</title>
+    <style>
+        *{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+
+}
+.photo{
+   display: flex;
+   justify-content: center;
+}
+
+.photo img{
+width: 200px;
+height: 200px;
+/* border: 5px solid green; */
+}
+
+.photo img:hover{
+    cursor: pointer;
+    /* border: 5px solid rgb(128, 0, 64); */
+}
+
+
+
+.main img{
+    width: 600px;
+    /* border: 5px solid green; */
+  display: inline-block;
+  margin: 30px auto;
+}
+
+.active{
+    border: 5px solid rgb(128, 0, 64);
+}
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="photo">
+            <img class="active" src="imgs/image2.jpg"  alt="" >
+            <img src="imgs/culture.jpg" alt="">
+            <img src="imgs/image1.jpg" alt="">
+            <img src="imgs/develo.jpg" alt="">
+        </div>
+        <div class="main">
+            <img src="imgs/image2.jpg" alt="" class="active">
+        </div>
+    </div>
+
+    <script>
+         photo_img = document.querySelectorAll(".photo img")
+if(localStorage.getItem("src")){
+    document.querySelector(".main img").src = localStorage.getItem("src")
+    photo_img.forEach(el =>{
+        el.classList.remove("active")
+    })
+    // document.querySelector('img').src = `${localStorage.getItem('src')}`.classList.add("active")
+}
+
+
+photo_img.forEach((el) => {
+    el.onclick = function(e){
+
+photo_img.forEach(el =>{
+    el.classList.remove("active")
+})
+e.target.classList.add("active")
+        document.querySelector(".main img").src = this.src
+        localStorage.setItem("src",e.target.src)
+    }
+})  
+
+    </script>
+</body>
+</html>
